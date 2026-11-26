@@ -269,13 +269,25 @@ python src/etl.py
 python src/load_data.py
 ```
 
-### 8. Run tests
+### 8. Create warehouse tables
+
+```bash
+psql -U YOUR_DB_USER -d YOUR_DB_NAME -f sql/warehouse.sql
+```
+
+### 9. Refresh the data warehouse
+
+```bash
+python src/load_warehouse.py
+```
+
+### 10. Run tests
 
 ```bash
 pytest -v
 ```
 
-### 9. Launch the dashboard
+### 11. Launch the dashboard
 
 ```bash
 streamlit run src/dashboard.py
