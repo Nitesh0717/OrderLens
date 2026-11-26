@@ -1,103 +1,326 @@
-# OrderLens — Retail Data Pipeline & Analytics Engine
+# 📊 OrderLens — Retail Data Engineering & Analytics Platform
 
-OrderLens is an end-to-end retail data engineering project that demonstrates data generation, ETL processing, data quality validation, PostgreSQL warehousing, SQL analytics and interactive dashboard visualization.
+<p align="center">
+  <strong>An end-to-end retail data pipeline built with Python, Pandas, PostgreSQL and Streamlit.</strong>
+</p>
 
-## Architecture
+<p align="center">
+  <img src="https://img.shields.io/badge/Python-3.12-blue?logo=python" alt="Python"/>
+  <img src="https://img.shields.io/badge/PostgreSQL-Database-4169E1?logo=postgresql" alt="PostgreSQL"/>
+  <img src="https://img.shields.io/badge/Pandas-Data%20Processing-150458?logo=pandas" alt="Pandas"/>
+  <img src="https://img.shields.io/badge/Streamlit-Dashboard-FF4B4B?logo=streamlit" alt="Streamlit"/>
+  <img src="https://img.shields.io/badge/Plotly-Visualization-3F4F75?logo=plotly" alt="Plotly"/>
+  <img src="https://img.shields.io/badge/Pytest-Testing-0A9EDC?logo=pytest" alt="Pytest"/>
+</p>
 
-CSV Data Sources → ETL & Data Validation → PostgreSQL → Data Warehouse → SQL Analytics → Streamlit Dashboard
+---
 
-## Tech Stack
+## 📌 Overview
 
-- Python
-- Pandas
-- PostgreSQL
-- SQL
-- SQLAlchemy
-- Streamlit
-- Plotly
-- Pytest
+**OrderLens** is an end-to-end retail data engineering and analytics project that transforms raw transactional datasets into structured, analytics-ready data.
 
-## Features
+The project demonstrates a practical data pipeline involving data generation, extraction, cleaning, validation, transformation, database loading, SQL analytics and interactive visualization.
 
-- Synthetic retail dataset generation
-- ETL data cleaning and validation
-- Rejected-data handling
-- PostgreSQL integration
-- Star-schema style warehouse (fact and dimension tables)
-- SQL-based business analytics
-- Automated data quality tests
-- Interactive revenue analytics dashboard
+OrderLens processes retail customers, products and orders data to generate insights into sales performance, revenue trends, product categories, customer activity and geographical distribution.
 
-## Dataset
+---
 
-- 500 Customers
-- 100 Products
-- 10,000 Orders
+## 🏗️ Architecture
 
-## Dashboard Metrics
+```mermaid
+flowchart TD
+    A[Raw CSV Datasets] --> B[Python ETL Pipeline]
+    B --> C[Data Cleaning & Validation]
+    C --> D[Processed CSV Datasets]
+    C --> E[Rejected Records]
+    D --> F[PostgreSQL Database]
+    F --> G[Data Warehouse]
+    G --> H[SQL Analytics]
+    H --> I[Streamlit Dashboard]
+```
 
-- Total Revenue
-- Total Orders
+---
+
+## 🛠️ Tech Stack
+
+| Technology | Purpose |
+|---|---|
+| Python | ETL and data processing |
+| Pandas | Data transformation and validation |
+| PostgreSQL | Relational database |
+| SQL | Analytics and querying |
+| Streamlit | Interactive dashboard |
+| Plotly | Data visualization |
+| Pytest | Automated testing |
+| Git | Version control |
+
+---
+
+## 📂 Project Structure
+
+```text
+OrderLens/
+├── data/
+│   ├── raw/
+│   │   ├── customers.csv
+│   │   ├── products.csv
+│   │   └── orders.csv
+│   └── processed/
+│       ├── customers.csv
+│       ├── customers_rejected.csv
+│       ├── products.csv
+│       ├── products_rejected.csv
+│       ├── orders.csv
+│       └── orders_rejected.csv
+├── docs/
+├── logs/
+├── sql/
+│   ├── analytics.sql
+│   ├── schema.sql
+│   └── warehouse.sql
+├── src/
+│   ├── dashboard.py
+│   ├── db.py
+│   ├── etl.py
+│   ├── generate_data.py
+│   └── load_data.py
+├── tests/
+│   └── test_data_quality.py
+├── .gitignore
+├── README.md
+└── requirements.txt
+```
+
+---
+
+## 📦 Dataset
+
+OrderLens uses synthetic retail datasets generated programmatically.
+
+| Dataset | Records |
+|---|---:|
+| Customers | 500 |
+| Products | 100 |
+| Orders | 10,000 |
+
+The datasets simulate retail transactional data for pipeline development, data validation and analytical reporting.
+
+---
+
+## ⚙️ Pipeline Components
+
+### 1. Data Generation
+
+Generates synthetic retail datasets containing:
+
+- Customer information
+- Product information
+- Order transactions
+
+The generator provides reproducible datasets for development and testing.
+
+### 2. Data Extraction, Transformation & Validation
+
+The ETL pipeline performs:
+
+- Column name normalization
+- Data cleaning and standardization
+- Duplicate record handling
+- Required field validation
+- Customer data validation
+- Product data validation
+- Order data validation
+- Data type conversion
+- Invalid record rejection
+- Processed dataset generation
+- ETL logging
+
+Invalid records are separated into rejection datasets for inspection.
+
+### 3. PostgreSQL Database
+
+PostgreSQL is used to store structured retail data and support analytical queries.
+
+The project includes SQL scripts for database schema creation and warehouse modelling.
+
+### 4. SQL Analytics
+
+SQL queries support analytical operations including:
+
+- Revenue calculations
+- Order metrics
+- Average Order Value (AOV)
+- Product category analysis
+- Monthly sales analysis
+- Customer performance analysis
+
+---
+
+## 📊 Dashboard Features
+
+The interactive Streamlit dashboard provides the following sections:
+
+### Overview
+
+- Revenue overview
+- Total orders
 - Average Order Value
-- Customer Count
-- Monthly Revenue Trends
-- Revenue by Category
-- Revenue by City
-- Top 10 Customers
+- Customer metrics
+- Revenue trends
+- Category performance
+- Geographical sales insights
 
-## Project Structure
+### Sales Analytics
 
-    OrderLens/
-    ├── data/
-    │   ├── raw/
-    │   └── processed/
-    ├── src/
-    ├── sql/
-    ├── tests/
-    ├── logs/
-    ├── requirements.txt
-    └── README.md
+- Revenue analysis
+- Sales trends
+- Category-level performance
+- City-level performance
+- Interactive analytical visualizations
 
-## Run the Project
+### Data Quality
+
+- Dataset-level validation information
+- Data quality metrics
+- Validation summaries
+- Data inspection
+
+### Data Explorer
+
+- Explore orders, customers and products
+- Interactive tabular data
+- CSV export functionality
+
+---
+
+## 🧪 Testing
+
+OrderLens uses Pytest for automated data quality testing.
+
+The test suite validates:
+
+- Customer data integrity
+- Customer uniqueness
+- Customer email completeness
+- Product data integrity
+- Product price validation
+- Order data integrity
+- Order uniqueness
+- Positive order quantities
+- Non-negative order amounts
+- Valid order dates
+
+Run the tests:
+
+```bash
+pytest -v
+```
+
+---
+
+## 🚀 Installation & Setup
 
 ### 1. Clone the repository
 
-    git clone <your-repository-url>
-    cd OrderLens
+```bash
+git clone https://github.com/Nitesh0717/OrderLens.git
+cd OrderLens
+```
 
-### 2. Create virtual environment
+### 2. Create a virtual environment
 
-    python3 -m venv .venv
-    source .venv/bin/activate
+```bash
+python -m venv .venv
+```
+
+Activate it:
+
+**Linux/macOS**
+
+```bash
+source .venv/bin/activate
+```
 
 ### 3. Install dependencies
 
-    pip install -r requirements.txt
+```bash
+pip install -r requirements.txt
+```
 
-### 4. Generate data
+### 4. Configure the database
 
-    python src/generate_data.py
+Configure the PostgreSQL database connection using the project's environment configuration.
 
-### 5. Run ETL
+### 5. Generate datasets
 
-    python src/etl.py
+```bash
+python src/generate_data.py
+```
 
-### 6. Load data
+### 6. Run ETL
 
-    python src/load_data.py
+```bash
+python src/etl.py
+```
 
-### 7. Run tests
+### 7. Load processed data
 
-    pytest -v
+```bash
+python src/load_data.py
+```
 
-### 8. Launch dashboard
+### 8. Run tests
 
-    streamlit run src/dashboard.py
+```bash
+pytest -v
+```
 
-## Analytics
+### 9. Launch the dashboard
 
-The project analyzes retail revenue, monthly sales trends, product categories, customer performance and geographical revenue distribution using SQL and Python.
+```bash
+streamlit run src/dashboard.py
+```
 
-## Purpose
+---
 
-This project demonstrates practical data engineering fundamentals including ETL, data quality, relational databases, warehouse modeling, analytical SQL and data visualization.
+## 📈 Analytics
+
+OrderLens enables analysis of retail data through:
+
+- Revenue and order performance
+- Monthly revenue trends
+- Product category performance
+- Customer activity
+- Geographical sales distribution
+- Transaction-level data exploration
+
+---
+
+## 🎯 Project Objectives
+
+- Build an end-to-end data engineering workflow
+- Implement ETL processes using Python and Pandas
+- Apply practical data quality validation
+- Work with relational databases and PostgreSQL
+- Implement SQL-based analytics
+- Explore data warehouse concepts
+- Develop interactive business analytics dashboards
+- Build a reproducible data processing workflow
+
+---
+
+## 🔮 Future Improvements
+
+- Docker-based deployment
+- Automated ETL scheduling
+- Incremental data loading
+- CI/CD pipeline integration
+- Advanced analytics
+- Sales forecasting
+- Cloud deployment
+
+---
+
+<p align="center">
+  <strong>OrderLens — Turning Retail Data into Actionable Insights.</strong>
+</p>

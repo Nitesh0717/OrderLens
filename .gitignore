@@ -1,5 +1,11 @@
 .venv/
+venv/
 __pycache__/
-*.pyc
+*.py[cod]
 .env
+.env.*
+!.env.example
 logs/*.log
+.pytest_cache/
+.mypy_cache/
+.DS_Store
