@@ -321,9 +321,43 @@ OrderLens enables analysis of retail data through:
 
 ---
 
+
+## 🐳 Docker Deployment
+
+### Prerequisites
+- Docker
+- Docker Compose
+
+### Start the application
+```bash
+ git clone https://github.com/Nitesh0717/OrderLens.git
+ cd OrderLens
+ docker compose up --build -d
+```
+
+### Load the data warehouse
+```bash
+ docker compose exec dashboard python src/load_warehouse.py
+```
+
+### Access the dashboard
+http://localhost:8501
+
+### Run tests
+```bash
+ docker compose exec dashboard pytest -v
+```
+
+### Stop containers
+```bash
+ docker compose down
+```
+
+> PostgreSQL data persists in a Docker volume. `docker compose down -v` deletes persisted database data.
+
+---
 ## 🔮 Future Improvements
 
-- Docker-based deployment
 - Automated ETL scheduling
 - Incremental data loading
 - CI/CD pipeline integration
