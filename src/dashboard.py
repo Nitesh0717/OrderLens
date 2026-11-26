@@ -181,8 +181,9 @@ if st.sidebar.button("🔄 Refresh Data", use_container_width=True):
         st.sidebar.error(f"Refresh failed: {e}")
 
 # -------------------- FILTERS --------------------
-min_date = orders["order_date"].min().date()
-max_date = orders["order_date"].max().date()
+min_date = pd.Timestamp(orders["order_date"].min()).date()
+max_date = pd.Timestamp(orders["order_date"].max()).date()
+
 
 st.sidebar.markdown("---")
 st.sidebar.subheader("Global Filters")
@@ -190,8 +191,6 @@ st.sidebar.subheader("Global Filters")
 start_date = st.sidebar.date_input(
     "Start Date",
     value=min_date,
-    min_value=min_date,
-    max_value=max_date,
     key="start_date",
     format="DD/MM/YYYY"
 )
@@ -199,8 +198,6 @@ start_date = st.sidebar.date_input(
 end_date = st.sidebar.date_input(
     "End Date",
     value=max_date,
-    min_value=min_date,
-    max_value=max_date,
     key="end_date",
     format="DD/MM/YYYY"
 )
